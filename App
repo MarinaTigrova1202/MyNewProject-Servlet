@@ -1,0 +1,10 @@
+package ru.appline;
+import org.springframework.boot.autoconfigure.SpringHootApplication;
+
+@SpringBootApplicaton
+
+public class App {
+    public static void main (String[] args) {
+        SpringApplicaton.run(App.class, args);
+    }
+}
