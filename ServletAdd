@@ -1,0 +1,71 @@
+package ru.appline;
+
+import com.google.gson.GsonBuilder;
+import com.sun.faces.application.WebPrintWriter;
+import jakarta.json.JsonObject;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import kotlinx.html.consumers.Exception_consumerKt;
+import logic.Model;
+import logic.User;
+import org.hibernate.boot.jaxb.internal.stax.BufferedXMLEventReader;
+
+import java.servlet.annotation.WebServlet;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@WebServlet(urlPatterns = "/add")
+public class ServletAdd extends HttpServlet {
+
+    private AtomicInteger counter = new AtomicInteger(initialValue:5);
+    Model model = Model.getInstance();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    /*   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+           response.setContentType("text/html;charset=utf-8");
+           request.setCharacterEncoding("UTF-8");
+           PrintWriter pw = responce.getWriter();
+
+           String name = request.getParameter("name");
+           String surname = request.getParameter("surname");
+           double salary = Double.parsDouble(request.getParameter("salary"));
+
+           User user = new User(name, surname, salary);
+           model.add(user, counter.getAndIncrement());
+
+           pw.print("<html>" +
+                   "<h3>Пользователь " + name + " " + surname + "с зарплатой =" + "salary" + "успешно создан! :)</h3>" +
+                   "<a href=\'addUser.html\'>Создать нового пользователя</a><br/>" +
+                   "<a href=\'Index.jsp\'>Домой</a><br/>" +
+                   "</html>");
+      }*/
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IDException {
+        StringBuffer jb = new StringBuffer();
+        String line;
+
+        try {
+            BufferReader reader = request.getReader();
+            while ((line = reader.readLine()) != null) {
+                jb.append(Line);
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+
+        JsonObject jobj = gson.fromJson(String.valueOff(jb), JsonObject.class);
+
+        request.setCharacterEncoding("UTF-8");
+
+        String name = jobj.get("name").getAsString();
+        String surname = jobj.get("surname").getAsString();
+        double salary = jobj.get("salary").getAsString();
+
+        User user = new User(name, surname, salary);
+        model.add(user, counter.getAndIncrement());
+
+        response.setContentType("application/json; charset=utf-8");
+                PrintWriter pw = response.getWriter();
+
+                pw.print(gson.toJson(model.getFromList());
+    }
+}
