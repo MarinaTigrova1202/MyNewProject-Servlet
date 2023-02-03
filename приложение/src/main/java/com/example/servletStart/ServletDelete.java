@@ -1,4 +1,4 @@
-package ru.appline;
+package com.example.servletStart;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
