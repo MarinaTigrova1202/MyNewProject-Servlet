@@ -1,0 +1,27 @@
+<%@ page import = "logic.Model" %>
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSP - Hello World</title>
+</head>
+<body>
+<h1>Домашняя страница по работе с пользователями</h1>
+Введите Id пользователя (0 - для вывода всего списка пользователей)
+<br/>
+
+Доступно:<%
+    Model model = Model.getInstance();
+        out.print(model.getFromList().size());
+%>
+<form method="get" action="list">
+    <label>Id:
+        <input type="text" name="id"></br>
+    </label>
+    <button type="submit">Поиск</button>
+</form>
+<a href="addUser.html">Создать нового пользователя</a>
+</body>
+</html>
