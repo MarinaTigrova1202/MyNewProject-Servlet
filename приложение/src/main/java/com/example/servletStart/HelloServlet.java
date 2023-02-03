@@ -1,4 +1,4 @@
-package ru.appline;
+package com.example.servletStart;
 
 import java.io.*;
 import javax.servlet.http.*;
