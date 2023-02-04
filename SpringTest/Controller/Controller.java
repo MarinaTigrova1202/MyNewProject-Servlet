@@ -31,8 +31,8 @@ public class Controller {
     return petModel.getFromList(id.get("id"));
     }
     @DeleteMapping(value = "/deletePet", consumes = "application/json")
-    public void deletePet(@RequestBody Integer petId) {
-        petModel.deleteFromList(petId);
+   public void deletePet(@RequestBody Map<String, Integer> id) {
+        petModel.deleteFromList(id.get("id"));
     }
 
     @PutMapping(value = "/editPet", consumes = "application/json", produces = "application/json")
