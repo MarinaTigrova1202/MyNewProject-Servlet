@@ -1,4 +1,4 @@
-package ru.appline;
+package ru.marina;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -8,25 +8,25 @@ public class DegreeMapModel implements Serializable {
 
     private static final DegreeMapModel instance = new DegreeMapModel();
 
-    private final Map<Side, DegreeRange> repo;
+    private final Map<String, DegreeRange> repo;
 
     public DegreeMapModel() {
-        repo = new HashMap<Side, DegreeRange>();
+        repo = new HashMap<String, DegreeRange>();
     }
 
     public static DegreeMapModel getInstance() {
         return instance;
     }
 
-    public void add(Side side, DegreeRange degreeRange) {
+    public void add(String side, DegreeRange degreeRange) {
         repo.put(side, degreeRange);
     }
 
-    public Map<Side, DegreeRange> getAll() {
+    public Map<String, DegreeRange> getAll() {
         return repo;
     }
 
-    public void addAll(Map<Side, String> newMap) {
+    public void addAll(Map<String, String> newMap) {
         newMap.forEach((key, line) -> {
             String[] degreeBounds = line.split("-");
             int from = Integer.parseInt(degreeBounds[0]);

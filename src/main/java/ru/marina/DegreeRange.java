@@ -1,4 +1,4 @@
-package ru.appline;
+package ru.marina;
 
 public class DegreeRange {
     private int from;

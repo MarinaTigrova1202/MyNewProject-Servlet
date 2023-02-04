@@ -66,9 +66,23 @@ public class ServletList extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
 
-        int id = Integer.parseInt(request.getParameter("id"));
-
+        StringBuffer sb = new StringBuffer();
         PrintWriter pw = response.getWriter();
+
+        String line;
+        try {
+            BufferedReader reader = request.getReader();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+
+        JsonObject jObj = gson.fromJson(String.valueOf(sb), JsonObject.class);
+
+        int id = jObj.get("id").getAsInt();
+
 
         if (id == 0) {
             pw.print(gson.toJson(model.getFromList()));

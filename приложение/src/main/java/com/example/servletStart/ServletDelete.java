@@ -23,8 +23,22 @@ public class ServletDelete extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
 
+        StringBuffer sb = new StringBuffer();
         PrintWriter pw = response.getWriter();
-        int id = Integer.parseInt(request.getParameter("id"));
+
+        String line;
+        try {
+            BufferedReader reader = request.getReader();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+
+        JsonObject jObj = gson.fromJson(String.valueOf(sb), JsonObject.class);
+
+        int id = jObj.get("id").getAsInt();
 
         if (id > 0) {
             if (id > model.getFromList().size()) {
